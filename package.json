@@ -12,7 +12,7 @@
     "build": "tsc",
     "prepublishOnly": "tsc",
     "playground": "npm -C ./playground run dev",
-    "test": "jest"
+    "test": "vitest"
   },
   "repository": {
     "type": "git",
@@ -36,21 +36,12 @@
   },
   "devDependencies": {
     "@types/debug": "^4.1.8",
-    "@types/jest": "^29.5.2",
     "@types/node": "^20.2.5",
     "@types/yargs": "^15.0.4",
-    "jest": "^29.5.0",
     "prettier": "^2.8.8",
-    "ts-jest": "^29.1.0",
-    "typescript": "^5.0.4"
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node",
-    "testPathIgnorePatterns": [
-      "<rootDir>/dist/",
-      "<rootDir>/node_modules/"
-    ]
+    "typescript": "^5.0.4",
+    "vite": "^4.3.9",
+    "vitest": "^0.31.4"
   },
   "prettier": {
     "semi": false,

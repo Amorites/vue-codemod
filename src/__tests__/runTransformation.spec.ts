@@ -1,5 +1,7 @@
 // @ts-nocheck
 /* eslint-env jest */
+import { describe, expect, it } from 'vitest'
+
 import type { Transform } from 'jscodeshift'
 import runTransformation from '../runTransformation'
 
@@ -39,7 +41,9 @@ const addUseStrict: Transform = (file, api, options) => {
   body[0].comments = body[1].comments
   delete body[1].comments
 
-  return root.toSource(options.printOptions || { quote: 'single', lineTerminator: '\n' })
+  return root.toSource(
+    options.printOptions || { quote: 'single', lineTerminator: '\n' }
+  )
 }
 
 describe('run-transformation', () => {

@@ -17,7 +17,7 @@
     "removeComments": false,
     "jsx": "preserve",
     "lib": ["ES2018", "DOM"],
-    "types": ["jest", "jscodeshift", "node"],
+    "types": ["jscodeshift", "node"],
     "rootDir": "."
   },
   "exclude": ["dist", "playground"]

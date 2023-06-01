@@ -15,7 +15,11 @@ import runTransformation from '../src/runTransformation'
 const debug = createDebug('vue-codemod')
 const log = console.log.bind(console)
 
-const { _: files, transformation: transformationName, params } = yargs
+const {
+  _: files,
+  transformation: transformationName,
+  params,
+} = yargs
   .usage('Usage: $0 [file pattern]')
   .option('transformation', {
     alias: 't',

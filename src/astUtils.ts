@@ -42,8 +42,9 @@ export function getVueOptions(context: Context): Collection<VueOptionsType> {
       return null
     }
 
-    const declarationKind = declarator.closest(j.VariableDeclaration).nodes()[0]
-      .kind
+    const declarationKind = declarator
+      .closest(j.VariableDeclaration)
+      .nodes()[0].kind
 
     if (declarationKind !== 'const') {
       // TODO: check reassignments (=, for in)

@@ -1,5 +1,7 @@
 /* eslint-env jest */
 
+import { describe, it } from 'vitest'
+
 describe('CLI', () => {
   it.todo('runs built-in transformation')
 

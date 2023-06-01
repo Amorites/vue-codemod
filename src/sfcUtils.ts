@@ -44,9 +44,11 @@ export function stringify(sfcDescriptor: SFCDescriptor) {
   const { template, script, styles, customBlocks } = sfcDescriptor
 
   return (
-    ([template, script, ...styles, ...customBlocks]
-      // discard blocks that don't exist
-      .filter((block) => block != null) as Array<NonNullable<SFCBlock>>)
+    (
+      [template, script, ...styles, ...customBlocks]
+        // discard blocks that don't exist
+        .filter((block) => block != null) as Array<NonNullable<SFCBlock>>
+    )
       // sort blocks by source position
       .sort((a, b) => a.loc.start.offset - b.loc.start.offset)
       // figure out exact source positions of blocks

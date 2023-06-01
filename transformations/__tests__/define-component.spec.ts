@@ -1,4 +1,4 @@
-jest.autoMockOff()
+import { expect, test, vi } from 'vitest'
 
 import * as fs from 'fs'
 import * as path from 'path'
