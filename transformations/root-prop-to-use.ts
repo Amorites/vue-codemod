@@ -34,6 +34,7 @@ export const transformAST: ASTTransformation<Params> = (
         return true
       }
     }
+      return false
   })
 
   appRoots.replaceWith(({ node: createAppCall }) => {

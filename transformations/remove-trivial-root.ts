@@ -12,7 +12,7 @@ import type * as N from 'jscodeshift'
  * move all other rootProps to the second argument of `createApp`
  */
 export const transformAST: ASTTransformation = ({ root, j }) => {
-  const appRoots = root.find(j.CallExpression, (node: N.CallExpression) => {
+  const appRoots = root.find(j.CallExpression, (node: N.CallExpression): boolean => {
     if (
       node.arguments.length === 1 &&
       j.ObjectExpression.check(node.arguments[0])
@@ -30,7 +30,9 @@ export const transformAST: ASTTransformation = ({ root, j }) => {
       ) {
         return true
       }
+      return false
     }
+      return false
   })
   appRoots.forEach(({ node: createAppCall }) => {
     if (!j.ObjectExpression.check(createAppCall.arguments[0])) {

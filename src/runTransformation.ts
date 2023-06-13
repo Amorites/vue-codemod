@@ -57,7 +57,7 @@ export default function runTransformation(
 
   const { path, source } = fileInfo
   const extension = (/\.([^.]*)$/.exec(path) || [])[0]
-  let lang = extension.slice(1)
+  let lang = extension?.slice(1)
 
   let descriptor: SFCDescriptor
   if (extension === '.vue') {
@@ -76,7 +76,7 @@ export default function runTransformation(
   let parserOption = (transformationModule as JSTransformationModule).parser
   // force inject `parser` option for .tsx? files, unless the module specifies a custom implementation
   if (typeof parserOption !== 'object') {
-    if (lang.startsWith('ts')) {
+    if (lang?.startsWith('ts')) {
       parserOption = lang
     }
   }

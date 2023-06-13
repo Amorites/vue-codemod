@@ -8,7 +8,7 @@ type Params = {
   useCompositionApi: boolean
 }
 
-export const transformAST: ASTTransformation<Params | undefined> = (
+export const transformAST: ASTTransformation<Params> = (
   context,
   { useCompositionApi }: Params = {
     useCompositionApi: false,

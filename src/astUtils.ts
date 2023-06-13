@@ -186,7 +186,7 @@ export function getVueOptions(context: Context): Collection<VueOptionsType> {
       }
 
       if (j.Identifier.check(decl)) {
-        const init = getConstDeclarationInit(decl)
+        const init = getConstDeclarationInit(decl) ?? null
         return isLikelyVueOptions(init, {
           shouldCheckProps: !isInSFC,
           mayBeAsyncComponent: !isInSFC,

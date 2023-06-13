@@ -1,4 +1,3 @@
-import { vi } from 'vitest'
 
 import { defineTest } from 'jscodeshift/src/testUtils'
 

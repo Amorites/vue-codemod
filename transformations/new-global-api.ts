@@ -13,19 +13,20 @@ import { transformAST as removeContextualHFromRender } from './remove-contextual
 import { transformAST as removeExtraneousImport } from './remove-extraneous-import'
 
 export const transformAST: ASTTransformation = (context) => {
-  vueAsNamespaceImport(context)
-  importCompositionApiFromVue(context)
-  newVueTocreateApp(context)
+  // 能自动加上默认参数吗
+  vueAsNamespaceImport(context, {})
+  importCompositionApiFromVue(context, {})
+  newVueTocreateApp(context), {}
   rootPropToUse(context, { rootPropName: 'store' })
   rootPropToUse(context, { rootPropName: 'router' })
-  removeTrivialRoot(context)
-  removeProductionTip(context)
+  removeTrivialRoot(context, {})
+  removeProductionTip(context, {})
 
   // TODO:
   // should analyze the AST to get the default import of vue-router and vuex,
   // rather than hard-coding the names
   removeVueUse(context, { removablePlugins: ['VueRouter', 'Vuex'] })
-  removeContextualHFromRender(context)
+  removeContextualHFromRender(context, {})
 
   removeExtraneousImport(context, { localBinding: 'Vue' })
   removeExtraneousImport(context, { localBinding: 'Vuex' })
