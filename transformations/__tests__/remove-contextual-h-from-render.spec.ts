@@ -1,5 +1,5 @@
 import { defineInlineTest } from 'jscodeshift/src/testUtils'
-const transform = require('../remove-contextual-h-from-render')
+import transform from '../remove-contextual-h-from-render';
 
 defineInlineTest(
   transform,

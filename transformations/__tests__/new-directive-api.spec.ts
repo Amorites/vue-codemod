@@ -1,5 +1,5 @@
 import { defineInlineTest } from 'jscodeshift/src/testUtils'
-const transform = require('../new-directive-api')
+import transform from '../new-directive-api';
 
 defineInlineTest(
   transform,

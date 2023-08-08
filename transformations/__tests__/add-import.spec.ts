@@ -1,5 +1,5 @@
 import { defineInlineTest } from 'jscodeshift/src/testUtils'
-const transform = require('../add-import')
+import transform from '../add-import';
 
 defineInlineTest(
   transform,

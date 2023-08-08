@@ -1,5 +1,5 @@
 import { defineInlineTest } from 'jscodeshift/src/testUtils'
-const transform = require('../scoped-slots-to-slots')
+import transform from '../scoped-slots-to-slots';
 
 defineInlineTest(
   transform,

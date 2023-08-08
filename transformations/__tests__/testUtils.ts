@@ -9,8 +9,8 @@
 
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 function applyTransform(module, options, input, testOptions = {}) {
   // Handle ES6 modules using default export for the transform
@@ -35,21 +35,21 @@ function applyTransform(module, options, input, testOptions = {}) {
 
   return (output || '').trim();
 }
-exports.applyTransform = applyTransform;
+export { applyTransform };
 
 function runSnapshotTest(module, options, input) {
   const output = applyTransform(module, options, input);
   expect(output).toMatchSnapshot();
   return output;
 }
-exports.runSnapshotTest = runSnapshotTest;
+export { runSnapshotTest };
 
 function runInlineTest(module, options, input, expectedOutput, testOptions) {
   const output = applyTransform(module, options, input, testOptions);
   expect(output).toEqual(expectedOutput.trim());
   return output;
 }
-exports.runInlineTest = runInlineTest;
+export { runInlineTest };
 
 function extensionForParser(parser) {
   switch (parser) {
@@ -103,7 +103,7 @@ const transformDir = path.join(dirName, '..', transformName)
     source
   }, expectedOutput, testOptions);
 }
-exports.runTest = runTest;
+export { runTest };
 
 /**
  * Handles some boilerplate around defining a simple jest/Jasmine test for a
@@ -119,7 +119,7 @@ function defineTest(dirName, transformName, options, testFilePrefix, testOptions
     });
   });
 }
-exports.defineTest = defineTest;
+export { defineTest };
 
 function defineInlineTest(module, options, input, expectedOutput, testName) {
   it(testName || 'transforms correctly', () => {
@@ -128,7 +128,7 @@ function defineInlineTest(module, options, input, expectedOutput, testName) {
     }, expectedOutput);
   });
 }
-exports.defineInlineTest = defineInlineTest;
+export { defineInlineTest };
 
 function defineSnapshotTest(module, options, input, testName) {
   it(testName || 'transforms correctly', () => {
@@ -137,7 +137,7 @@ function defineSnapshotTest(module, options, input, testName) {
     });
   });
 }
-exports.defineSnapshotTest = defineSnapshotTest;
+export { defineSnapshotTest };
 
 /**
  * Handles file-loading boilerplates, using same defaults as defineTest
@@ -149,4 +149,4 @@ function defineSnapshotTestFromFixture(dirName, module, options, testFilePrefix,
   const source = fs.readFileSync(inputPath, 'utf8');
   defineSnapshotTest(module, options, source, testName)
 }
-exports.defineSnapshotTestFromFixture = defineSnapshotTestFromFixture;
+export { defineSnapshotTestFromFixture };

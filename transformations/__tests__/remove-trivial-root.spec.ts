@@ -1,5 +1,5 @@
 import { defineInlineTest } from 'jscodeshift/src/testUtils'
-const transform = require('../remove-trivial-root')
+import transform from '../remove-trivial-root';
 
 defineInlineTest(
   transform,

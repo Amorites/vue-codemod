@@ -1,5 +1,5 @@
 import { defineInlineTest } from 'jscodeshift/src/testUtils'
-const transform = require('../import-composition-api-from-vue')
+import transform from '../import-composition-api-from-vue';
 
 defineInlineTest(
   transform,

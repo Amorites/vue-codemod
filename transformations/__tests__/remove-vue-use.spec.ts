@@ -1,5 +1,5 @@
 import { defineInlineTest } from 'jscodeshift/src/testUtils'
-const transform = require('../remove-vue-use')
+import transform from '../remove-vue-use';
 
 defineInlineTest(
   transform,
