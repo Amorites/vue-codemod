@@ -7,7 +7,7 @@
     "target": "ES2018",
     "module": "commonjs",
     "moduleResolution": "node",
-    "allowJs": false,
+    "allowJs": true,
     "noUnusedLocals": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
@@ -18,7 +18,9 @@
     "jsx": "preserve",
     "lib": ["ES2018", "DOM"],
     "types": ["jscodeshift", "node"],
-    "rootDir": "."
+    "rootDir": ".",
+    "isolatedModules": true,
+    
   },
   "exclude": ["dist", "playground"]
 }

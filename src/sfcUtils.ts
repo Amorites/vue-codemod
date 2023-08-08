@@ -3,16 +3,15 @@ import {
   CodegenResult,
   ParserOptions,
   RootNode,
-  NodeTypes,
   ElementNode,
   SourceLocation,
   CompilerError,
-  TextModes,
   BindingMetadata,
 } from '@vue/compiler-core'
 import * as CompilerDom from '@vue/compiler-dom'
 import { RawSourceMap, SourceMapGenerator } from 'source-map'
 import { Statement } from '@babel/types'
+import { NodeTypes, TextModes } from './types'
 
 /**
  * The following function is adapted from https://github.com/psalaets/vue-sfc-descriptor-to-string/blob/master/index.js
