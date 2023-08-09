@@ -16,7 +16,7 @@ export const transformAST: ASTTransformation = ({ j, root }) => {
 
   const squareBracketScopedSlots = root.find(j.MemberExpression, {
     property: {
-      type: 'StringLiteral',
+      type: 'Literal',
       value: '$scopedSlots',
     },
   })

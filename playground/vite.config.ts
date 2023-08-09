@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 import vue from '@vitejs/plugin-vue'
 
 const API_PORT = process.env.API_PORT || 3002
@@ -14,4 +14,7 @@ export default defineConfig({
     },
   },
   plugins: [vue()],
+  test: {
+    include: ['**/*.{spec}.?(c|m)[jt]s?(x)']
+  }
 })
