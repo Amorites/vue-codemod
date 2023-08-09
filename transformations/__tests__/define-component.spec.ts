@@ -4,8 +4,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import { defineInlineTest } from 'jscodeshift/src/testUtils'
 import runTransformation from '../../src/runTransformation'
-
-const transform = require('../define-component')
+import transform from '../define-component'
 
 defineInlineTest(
   transform,
@@ -71,7 +70,7 @@ const runTest = (
   fixtureName: string,
   extension: string = 'vue'
 ) => {
-  test(description, () => {
+  test(description, async () => {
     const fixtureDir = path.resolve(
       __dirname,
       '../__testfixtures__',
@@ -90,7 +89,7 @@ const runTest = (
       path: inputPath,
       source: fs.readFileSync(inputPath).toString(),
     }
-    const transformation = require(`../${transformationName}`)
+    const transformation = await import(`../${transformationName}`)
 
     expect(runTransformation(fileInfo, transformation)).toEqual(
       fs.readFileSync(outputPath).toString()

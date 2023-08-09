@@ -64,7 +64,7 @@ export const transformAST: ASTTransformation<Params | void> = (
     const rootProps = node.arguments[0]
     const elIndex = rootProps.properties.findIndex(
       (p) =>
-        j.ObjectProperty.check(p) &&
+        (j.ObjectProperty.check(p) || j.Property.check(p)) &&
         j.Identifier.check(p.key) &&
         p.key.name === 'el'
     )
@@ -92,16 +92,14 @@ export const transformAST: ASTTransformation<Params | void> = (
         j.MemberExpression.check(n.callee) &&
         j.NewExpression.check(n.callee.object) &&
         j.Identifier.check(n.callee.property) &&
-        n.callee.property.name === '$mount'
+        ['$mount', 'mount'].includes(n.callee.property.name) 
       )
     })
     new$mount.replaceWith(({ node }) => {
       const el = node.arguments[0]
-
       const instance = (node.callee as N.MemberExpression)
         .object as N.NewExpression
       const ctor = instance.callee
-
       return j.callExpression(
         j.memberExpression(
           j.callExpression(
@@ -140,7 +138,7 @@ export const transformAST: ASTTransformation<Params | void> = (
         j.ObjectExpression.check(n.arguments[0]) &&
         n.arguments[0].properties.some(
           (prop) =>
-            j.ObjectProperty.check(prop) &&
+            (j.ObjectProperty.check(prop) || j.Property.check(prop)) &&
             j.Identifier.check(prop.key) &&
             prop.key.name === 'el'
         )

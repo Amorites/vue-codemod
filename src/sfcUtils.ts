@@ -40,11 +40,11 @@ import { NodeTypes, TextModes } from './types'
  */
 
 export function stringify(sfcDescriptor: SFCDescriptor) {
-  const { template, script, styles, customBlocks } = sfcDescriptor
+  const { template, script, scriptSetup, styles, customBlocks } = sfcDescriptor
 
   return (
     (
-      [template, script, ...styles, ...customBlocks]
+      [template, script, scriptSetup, ...styles, ...customBlocks]
         // discard blocks that don't exist
         .filter((block) => block != null) as Array<NonNullable<SFCBlock>>
     )

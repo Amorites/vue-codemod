@@ -1,13 +1,11 @@
-import type { ArrowFunctionExpression } from 'jscodeshift'
-
-import wrap from '../src/wrapAstTransformation'
 import type { ASTTransformation } from '../src/wrapAstTransformation'
+import wrap from '../src/wrapAstTransformation'
 
 import { transformAST as addImport } from './add-import'
 
 export const transformAST: ASTTransformation = (context) => {
   const { root, j } = context
-  const renderFns = root.find(j.ObjectProperty, {
+  const renderFns = root.find(j.Property, {
     key: {
       name: 'render',
     },
@@ -16,14 +14,14 @@ export const transformAST: ASTTransformation = (context) => {
     },
   })
 
-  const renderMethods = root.find(j.ObjectMethod, {
+  const renderMethods = root.find(j.Property, {
     key: {
       name: 'render',
     },
-    params: (params: Array<any>) =>
-      j.Identifier.check(params[0]) && params[0].name === 'h',
+    value: {
+      type: 'FunctionExpression'
+    }
   })
-
   if (renderFns.length || renderMethods.length) {
     addImport(context, {
       specifier: { type: 'named', imported: 'h' },
@@ -31,11 +29,15 @@ export const transformAST: ASTTransformation = (context) => {
     })
 
     renderFns.forEach(({ node }) => {
-      ;(node.value as ArrowFunctionExpression).params.shift()
+      if (j.ArrowFunctionExpression.check(node.value)) {
+        node.value.params.shift()
+      }
     })
 
     renderMethods.forEach(({ node }) => {
-      node.params.shift()
+      if (j.FunctionExpression.check(node.value)) {
+        node.value.params.shift()
+      }
     })
   }
 }

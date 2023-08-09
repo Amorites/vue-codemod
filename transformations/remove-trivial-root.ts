@@ -47,7 +47,6 @@ export const transformAST: ASTTransformation = ({ root, j }) => {
     if (j.SpreadProperty.check(prop) || j.SpreadElement.check(prop)) {
       return
     }
-
     if (
       prop.key &&
       j.Identifier.check(prop.key) &&
@@ -57,6 +56,8 @@ export const transformAST: ASTTransformation = ({ root, j }) => {
       if (j.ObjectMethod.check(prop)) {
         renderFnBody = prop.body
       } else if (j.ArrowFunctionExpression.check(prop.value)) {
+        renderFnBody = prop.value.body
+      } else if (j.FunctionExpression.check(prop.value)) {
         renderFnBody = prop.value.body
       } else {
         return
