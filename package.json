@@ -12,7 +12,7 @@
     "build": "tsc",
     "prepublishOnly": "tsc",
     "playground": "npm -C ./playground run dev",
-    "test": "vitest --globals"
+    "test": "vitest"
   },
   "repository": {
     "type": "git",

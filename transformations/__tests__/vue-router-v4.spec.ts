@@ -1,6 +1,5 @@
 
-import { defineTest } from 'jscodeshift/src/testUtils'
+import { defineTest } from './testUtils'
 
-defineTest(__dirname, 'vue-router-v4', {}, 'vue-router-v4/create-router')
-
-defineTest(__dirname, 'vue-router-v4', {}, 'vue-router-v4/create-history')
+defineTest(__dirname, 'vue-router-v4', {}, 'vue-router-v4/create-router', {})
+defineTest(__dirname, 'vue-router-v4', {}, 'vue-router-v4/create-history', {})
